@@ -7,7 +7,7 @@ class PositionTest {
     @Test
     fun `check if position is not negative`() {
         val exception = assertFailsWith<PositionOutOfBoundsException>(
-            block = { Position(-1, 0) }
+            block = { Position(-1, -1) }
         )
         assertEquals(exception.message, "Negative position not allowed")
     }
