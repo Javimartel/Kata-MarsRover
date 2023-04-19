@@ -11,7 +11,7 @@ class RoverTest {
     @Test
     fun `check if there is any command`() {
         val exception = assertFailsWith<NotCommandException>(
-            block = { curiosity.followThisOrders([]) }
+            block = { curiosity.followThisOrders(listOf()) }
         )
         assertEquals(exception.message, "Any command received")
     }
