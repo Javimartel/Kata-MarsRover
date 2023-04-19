@@ -3,9 +3,12 @@ import org.junit.jupiter.api.Assertions.*
 import kotlin.test.assertFailsWith
 class RoverTest {
 
+    private val initialPosition = Position(0, 0)
+    private val initialDirection = DIRECTION.NORTH
+
     private val curiosity: Rover = Rover(
-        Position(0, 0),
-        DIRECTION.NORTH
+        initialPosition,
+        initialDirection
     )
 
     @Test
