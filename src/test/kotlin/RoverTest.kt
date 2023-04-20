@@ -34,4 +34,13 @@ class RoverTest {
 
         assertEquals(DIRECTION.WEST, curiosity.getCurrentDirection())
     }
+
+    @Test
+    fun `check if curiosity moves and turns correctly`() {
+        val commands = listOf(MOVE.BACKWARD, TURN.RIGHT)
+        curiosity.followThisOrders(commands)
+
+        assertEquals(Position(2,1), curiosity.getCurrentPosition())
+        assertEquals(DIRECTION.EAST, curiosity.getCurrentDirection())
+    }
 }
