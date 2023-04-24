@@ -12,6 +12,10 @@ class Position(private var row: Int, private var col: Int) {
         this.row += position
     }
 
+    fun moveHorizontally(position: Int) {
+        this.col += position
+    }
+
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
@@ -31,4 +35,5 @@ class Position(private var row: Int, private var col: Int) {
     override fun toString(): String {
         return "Position(row=$row, col=$col)"
     }
+
 }
