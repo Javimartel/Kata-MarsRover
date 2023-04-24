@@ -44,7 +44,7 @@ class Rover(private val position: Position, private var direction: DIRECTION) {
                 if (isLastPosition) cardinalPoints.first() else cardinalPoints[currentPoint + 1]
             }
             else -> {
-                if(isFirstPosition) cardinalPoints.last() else cardinalPoints[currentPoint - 1]
+                if (isFirstPosition) cardinalPoints.last() else cardinalPoints[currentPoint - 1]
             }
         }
     }
