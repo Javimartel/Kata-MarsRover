@@ -5,17 +5,11 @@ class Rover(private val position: Position, private var direction: DIRECTION) {
         }
 
         commands.forEach { movement ->
-            when {
-                movement == MOVE.FORWARD && this.direction == DIRECTION.NORTH -> {
-                    this.position.moveVertically(-1)
+            when (movement) {
+                is MOVE -> {
+                    this.nextPosition(movement)
                 }
-                movement == MOVE.BACKWARD && this.direction == DIRECTION.NORTH -> {
-                    this.position.moveVertically(1)
-                }
-                movement == MOVE.FORWARD && this.direction == DIRECTION.WEST -> {
-                    this.position.moveHorizontally(-1)
-                }
-                movement is TURN -> {
+                is TURN -> {
                     this.direction = nextDirectionToFace(movement)
                 }
             }
@@ -28,6 +22,20 @@ class Rover(private val position: Position, private var direction: DIRECTION) {
 
     fun getCurrentDirection(): DIRECTION {
         return this.direction
+    }
+
+    private fun nextPosition(movement: MOVE) {
+        val isFacingVertically = this.direction == DIRECTION.NORTH || this.direction == DIRECTION.SOUTH
+        val movePosition = if (isFacingVertically) this.position::moveVertically else this.position::moveHorizontally
+
+        val isMovingForward = movement == MOVE.FORWARD
+        val isFacingNorthOrWest = this.direction == DIRECTION.NORTH || this.direction == DIRECTION.WEST
+
+        if (isMovingForward) {
+            if (isFacingNorthOrWest) movePosition(-1) else movePosition(1)
+        } else {
+            if (isFacingNorthOrWest) movePosition(1) else movePosition(-1)
+        }
     }
 
     private fun nextDirectionToFace(command: TURN): DIRECTION {
